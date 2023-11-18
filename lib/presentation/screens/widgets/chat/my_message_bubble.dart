@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:practice_yesno/domain/entities/messages.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  const MyMessageBubble({super.key});
+  final Message message;
+  const MyMessageBubble({
+    super.key,
+    required this.message,
+    });
 //Cuando es un widget no se suele utilizar atributos de widget. Pero dentro del metodo built si. Pues si no, cada que se llame al widget se necesitará agregar el valor del widget que depende
   @override
   Widget build(BuildContext context) {
@@ -16,13 +21,13 @@ class MyMessageBubble extends StatelessWidget {
             decoration: BoxDecoration(
               color: colors.primary,
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text('My message'),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(message.text),
             ),
           ),
         ),
-        const SizedBox(height: 8,)
+        const SizedBox(height: 5,)
       ],
     );
   }
