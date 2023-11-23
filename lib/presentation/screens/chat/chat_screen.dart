@@ -16,10 +16,13 @@ class ChatScreen extends StatelessWidget {
         leading: const Padding(
           padding: EdgeInsets.all(3.5),
           child: CircleAvatar(
-            backgroundImage:  NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Emma_Watson_2013.jpg/300px-Emma_Watson_2013.jpg'),
+            backgroundImage:  NetworkImage('https://www.adslzone.net/app/uploads-adslzone.net/2023/04/Diseno-sin-titulo-1.png'),
           ),
         ),
-        title: const Text('Mylove Emma Watson'),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 55),
+          child: Text('YesNoChat'),
+        ),
       ),
       body: const MessageChat(),
     );
@@ -35,7 +38,7 @@ class MessageChat extends StatelessWidget {
   Widget build(BuildContext context) {
     final chatProvider = context.watch<ChatProvider>();
     return SafeArea(
-      child: Padding(
+      child: Padding(   
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
@@ -46,15 +49,15 @@ class MessageChat extends StatelessWidget {
                 itemBuilder:(context, index) {
                   final messages = chatProvider.messageList[index];
                   return (messages.fromQuo == FromQuo.hers)
-                  ? const HerMessageBubble()
+                  ? HerMessageBubble(message: messages,)
                   : MyMessageBubble(message: messages,);
                 },
                 )
               ), 
             MessageFieldBox(
               onValue: (value) => chatProvider.sendMessage(value),
-            )
-
+            ),
+            const SizedBox(height: 5,)
           ],
         ),
       ),
